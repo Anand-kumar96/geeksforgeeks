@@ -1,6 +1,9 @@
 Subarray with given sum
-EasyAccuracy: 39.71%Submissions: 100k+Points: 2
-Lamp
+
+EasyAccuracy: 39.71%
+Submissions: 100k+
+Points: 2
+
 This problem is part of GFG SDE Sheet. Click here to view more.  
 
 Given an unsorted array A of size N that contains only non-negative integers, find a continuous sub-array which adds to a given number S.
