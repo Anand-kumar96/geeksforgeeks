@@ -3,6 +3,7 @@
 
 Sort by Absolute Difference
 EasyAccuracy: 48.85%Submissions: 17048Points: 2
+
 Given an array of N elements and a number K. The task is to arrange array elements according to the absolute difference with K, i. e., element having minimum difference comes first and so on.
 Note : If two or more elements are at equal distance arrange them in same sequence as in the given array.
  
