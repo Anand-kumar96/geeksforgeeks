@@ -1,53 +1,55 @@
 // https://practice.geeksforgeeks.org/problems/kth-smallest-element5635/1
 
 class Solution{
-     public static void swap(int ar[], int a, int b){
-        int t=ar[a];
-        ar[a]=ar[b];
-        ar[b]=t;
-    }
-    public static int partition(int nums[], int l, int h){
-        int pivot =nums[h];
-        int i=l;
-          int j=l;
-          while(i<=h)
-          {
-           if(nums[i]<=pivot)
-           {
-               swap(nums[i],nums[j]);
-               i++;
-               j++;
-           }
-           else
-           i++;
-          }
-          return j-1;
-        }
-    
-    public static int quicksort(int nums[], int k, int l, int h){
-        if(l<h){
-            int piv=partition(nums, l, h);
-            
-            if(piv+1==k){
-                return nums[piv];
-            }
-            
-            else if(piv+1<k){
-                l=piv+1;
-                return quicksort(nums, k, l, h);
-            }else{
-                h=piv-1;
-                return quicksort(nums, k, l, h);
-            }
-        }
-        
-        return nums[h];
+    void swap(int arr[], int l, int r){
+        int tmp = arr[l];
+        arr[l] = arr[r];
+        arr[r] = tmp;
     }
     
+    int randomPartition(int arr[], int l, int r){
+        int n = r-l+1;
+        Random rd = new Random();
+        int pivot = rd.nextInt(n);
+        swap(arr, l + pivot, r);
+        return partition(arr, l, r);
+    }
     
-    public static int kthSmallest(int[] arr, int l, int r, int k) { 
-        return quicksort(arr, k, l, r);
-    } 
+    int kthSmallest(int arr[], int l, int r, int k)
+    {
+        // If k is smaller than number of elements in array
+        if (k > 0 && k <= r - l + 1)
+        {
+            // find a position for random partition
+            int pos = randomPartition(arr, l, r);
+            
+            // if this pos gives the kth smallest element, then return
+            if (pos-l == k-1)
+                return arr[pos];
+                
+            // else recurse for the left and right half accordingly
+            if (pos-l > k-1)  
+                return kthSmallest(arr, l, pos-1, k);
+            return kthSmallest(arr, pos+1, r, k-pos+l-1);
+        }
+    
+        return Integer.MAX_VALUE;
+    }
+    
+    int partition(int arr[], int l, int r)
+    {
+        int x = arr[r], i = l;
+        for (int j = l; j <= r - 1; j++)
+        {
+            if (arr[j] <= x)
+            {
+                swap(arr, i, j);
+                i++;
+            }
+        }
+        swap(arr, i, r);
+        return i;
+    }
 }
 
 // i got tle
