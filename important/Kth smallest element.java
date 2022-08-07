@@ -49,3 +49,28 @@ class Solution{
         return quicksort(arr, k, l, r);
     } 
 }
+
+// i got tle
+
+class Solution{
+    public static int kthSmallest(int[] arr, int l, int r, int k) 
+    { 
+        int n=arr.length;
+      TreeSet<Integer>tm=new TreeSet<Integer>();
+      for(int i=0;i<n;i++){
+          tm.add(arr[i]);
+      }
+      int ans=Integer.MAX_VALUE;;
+     int count=0;
+      for(int nums:tm){
+        arr[count++]=nums;
+         }
+         if(k>0){
+      ans=arr[k-1];
+         }
+      return ans;
+    
+    
+    }
+}
+
